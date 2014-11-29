@@ -1,0 +1,140 @@
+<% provide(:title, @user.name) %>
+<%= current_user.id %>
+<%= @user.id %>
+<% if current_user.id == @user.id %>
+<p>This is yours page and you can modify it</p>
+
+<h1 align="left">Profile</h1>
+<%= link_to "Back to DashBoard", users_path %> |
+<%= link_to "Profile", current_user %> |
+<%= link_to "Action", action_path %>
+<hr />
+<%= form_for(@user) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+<p>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</p>
+<p>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+</p>
+<p>
+  <%= f.label :password %><br>
+  <%= f.password_field :password %>
+</p>
+<p>
+  <%= f.label :password_confirmation, "Confirmation" %><br>
+  <%= f.password_field :password_confirmation %>
+</p>
+<p>
+  <%= f.radio_button :isCandidate, 'candidate'%> 
+  <%= label :isCandidate, 'candidate' %>
+  <%= f.radio_button :isCandidate, 'company' %>
+  <%= label :isCandidate, 'company' %>
+</p>
+<p>
+  <%= f.label :phone %>
+  <%= f.text_field :phone %>
+</p>
+<p>
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+</p>
+&nbsp;
+<p>
+ <%= f.submit "Save Modification", class: "btn btn-large btn-primary" %>
+</p>
+&nbsp;
+<p>
+  <%=link_to 'Back', users_path%>
+</p>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+<%else%>
+
+
+
+<% if @user.isCandidate == 'company' %>
+<head>
+  <style type="text/css">
+  body {
+    color: black;
+  }
+  span {
+    color: black;
+    font-size: 23px;
+  }
+  </style>
+</head>
+<body style=background-size:cover; background="https://farm6.staticflickr.com/5246/5266366262_52550b1a6d_b.jpg">
+  <div align='left'class="row">
+    <aside class="span4">
+      <section>
+        <p>Hi, <%= current_user.name%>, you are viewing <%= gravatar_for user.name %>'s profile</p>
+      </section>
+    </div>
+    <hr />
+    <p>Name: <%= @user.name %></p>
+    <p>Email: <%= @user.email %></p>
+    <p>Phone: <%= @user.name %></p>
+    <p>Address: <%= @user.name %></p>
+    
+    <%= button_to "View this company's openings", root_url, :class => "button", :method => :get %>
+    <%= link_to "Home", users_path %>
+  </aside>
+
+</body>
+
+
+
+<% else %>
+
+
+
+
+<head>
+  <style type="text/css">
+  body {
+    color: white;
+  }
+  span {
+    color: black;
+    font-size: 23px;
+  }
+  </style>
+</head>
+<body style=background-size:cover; background="https://farm6.staticflickr.com/5583/15026716200_7e600049c5_b.jpg">
+  <div align='left'class="row">
+    <aside class="span4">
+      <section>
+        <%= gravatar_for @user %>
+        <p>Hi, <%= current_user.name%>, you are viewing <%= @user.name %>'s profile</p>
+      </section>
+    </div>
+    <hr />
+    <p>Name: <%= @user.name %></p>
+    <p>Email: <%= @user.email %></p>
+    <p>Phone: <%= @user.name %></p>
+    <p>Address: <%= @user.name %></p>
+    <%= button_to "View his application", root_url, :class => "button", :method => :get %>
+    <%= link_to "Home", users_path %>
+
+
+
+  </aside>
+
+</body>
+<% end %>
+<% end %>

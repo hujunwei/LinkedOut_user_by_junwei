@@ -1,0 +1,2 @@
+CREATE TABLE "applications" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "application_status" varchar(255), "update_date" datetime, "created_at" datetime, "updated_at" datetime, "user_id" integer, "postion_id" integer)xitexit
+exgrtgLBawr

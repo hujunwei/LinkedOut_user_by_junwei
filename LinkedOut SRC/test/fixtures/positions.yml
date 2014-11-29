@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cid: 1
+  post_date: 2014-11-26
+  deadline: 2014-11-26
+  name: MyString
+  description: MyText
+  location: MyString
+  pos_type: MyString
+  level: MyString
+  position_status: MyString
+
+two:
+  cid: 1
+  post_date: 2014-11-26
+  deadline: 2014-11-26
+  name: MyString
+  description: MyText
+  location: MyString
+  pos_type: MyString
+  level: MyString
+  position_status: MyString

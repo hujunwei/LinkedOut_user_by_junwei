@@ -1,0 +1,86 @@
+<% if signed_in? %>
+<!--Company View-->
+<% if current_user.isCandidate == 'company' %>
+<body style=background-size:cover; background="https://farm6.staticflickr.com/5246/5266366262_52550b1a6d_b.jpg">
+  <div class="row">
+    <aside class="span4">
+      <section align='left'>
+        <a href="<%= user_path(current_user) %>">
+          <%= gravatar_for current_user %>
+          <%= button_to "View Profile", current_user %>
+        </a>
+        <h1 style="color:red">
+          Hi, <%= current_user.name %>, your company have<span color="red">
+          <%= pluralize(current_user.microposts.count, "opening positions") %>
+        </span><span color="yellow"> 
+      </span>
+    </h1>
+    
+  </section>
+  <hr />
+  <section >
+    <%= form_for(@micropost) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="field">
+      <h1>Add new positions below or <%= link_to "Sign out", signout_path, method: "delete" %> </h1>
+      <%= f.text_area :content, placeholder: "Add job description here...", size: "160x20" %>
+    </div>
+    <%= f.submit "Save", class: "btn btn-large btn-primary" %>1
+    <% end %>
+  </section>
+</aside>
+</div>
+</body>
+<!--Candidate View -->
+<% else %>
+<body style=background-size:cover; background="https://farm6.staticflickr.com/5583/15026716200_7e600049c5_b.jpg">
+  <div class="row">
+    <aside class="span4">
+      <section align='left'>
+       <a href="<%= user_path(current_user) %>">
+        <%= gravatar_for current_user %>
+      </a>
+      <%= button_to "View Profile", current_user, :class => "button", :method => :get %> 
+      <h1 style="color:red">
+        Hi, <%= current_user.name %>, you have<span color="red">
+        <%= pluralize(current_user.microposts.count, "applied positions") %>
+      </span><span color="yellow">
+      <hr />
+    </span>
+  </h1>
+  </section>
+<h1 style="color:red">Apply new positions below</h1>
+
+<section >
+  <%= form_for(@micropost) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Apply positions description here...", size: "160x20" %>
+  </div>
+  <%= f.submit "Save", class: "btn btn-large btn-primary" %>
+  <hr />
+  <% end %>
+  <%= button_to "Sign out", signout_path, method: "delete" %> 
+</section>
+</aside>
+</div>
+</body>
+<% end %>
+<% else %>
+<body style=background-size:cover; background="https://farm4.staticflickr.com/3900/15103046802_a9267402ec_k.jpg">
+  <div class="center hero-unit">
+    <h1>LinkedOut</h1>
+    <p>
+      <%= @application.position.name %>
+    </p>  
+
+    <i style=>
+      ----The world easiest way to find a job! 
+    </i><br>
+    <hr>
+    <!--%= link_to "Sign up now!", signup_path,
+    class: "btn btn-large btn-primary" %-->
+    <%= link_to "Sign in", signin_path %> to start your career
+  </div>
+</body>
+<% end %>

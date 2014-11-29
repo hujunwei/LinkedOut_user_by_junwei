@@ -1,0 +1,24 @@
+<% provide(:title, "Sign in") %>
+<head>
+	
+</head>
+<body style=background-size:cover; background="https://farm4.staticflickr.com/3918/14157259049_259eea4d85_b.jpg">
+<h1 align='center'>Welcome to LinkedOut!</h1>
+<h3 align='center'>Please sign in</h3>
+
+<div class="row"align='center'>
+  <div class="span6 offset3">
+    <%= form_for(:session, url: sessions_path) do |f| %>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+    <% end %>
+    <p>New user? <%= link_to "Sign up now!", signup_path %></p><br>
+    <%=link_to "Back to Home Page", root_url%>
+  </div>
+</div>
+</body>

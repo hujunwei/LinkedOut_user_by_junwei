@@ -1,0 +1,12 @@
+<a href="<%= user_path(current_user) %>">
+  <%= gravatar_for current_user %>
+</a>
+<h1 style="color:red">
+  Hi, <%= current_user.name %>, your company have<span color="red">
+  	<%= pluralize(current_user.microposts.count, "opening positions") %>
+	</span><span color="yellow">
+  <%= link_to "view positions", current_user %> 
+</span>
+</h1>
+<h1>Add new positions below or <%= link_to "sign out", signout_path, method: "delete" %> </h1>
+

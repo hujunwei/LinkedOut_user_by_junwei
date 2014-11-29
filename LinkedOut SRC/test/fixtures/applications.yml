@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pid: 1
+  ca_id: 1
+  application_status: MyString
+  update_date: 2014-11-26
+
+two:
+  pid: 1
+  ca_id: 1
+  application_status: MyString
+  update_date: 2014-11-26
