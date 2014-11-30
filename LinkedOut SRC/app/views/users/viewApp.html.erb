@@ -1,0 +1,113 @@
+<% provide(:title, @user.name) %>
+
+<head>
+  <style type="text/css">
+  body {
+    color: white;
+  }
+  span {
+    color: black;
+    font-size: 23px;
+  }
+  </style>
+</head>
+<body style=background-size:cover; background="https://farm6.staticflickr.com/5583/15026716200_7e600049c5_b.jpg">
+<div align='left'class="row">
+  <aside class="span4">
+    <section>
+      <%= gravatar_for @user %>
+      <%= button_to "Sign out", signout_path, method: "delete" %>
+    <h1 style="color:red">How are you today? &nbsp;&nbsp;<%= @user.name %></h1>
+    </section>
+</div>
+<hr>
+
+<!-- Generate application list for Company  -->
+<% if @user.isCandidate == 'company' %>
+<div class="span8">
+    <% if @apps.any? %>
+      <h3 align='left' style="color:white">Applicants (<%= @apps.count %>)</h3>
+
+<table border="1" style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Apply Date</th>
+    <th>Deadline</th>
+    <th>Status</th>
+    <th>Action</th>
+    <th>Reimbursement</th>
+  </tr>
+  <% @apps.each do |app| %>
+    <tr>
+      <td><a href="/users/<%= app[5] %>"><%= app[0] %></a></td>
+      <td><%= app[1].strftime("%Y-%m-%d") %></td>
+      <td><%= app[3].strftime("%Y-%m-%d") %></td>
+      <td><%= app[4] %></td>
+      <td>
+
+<%= form_tag("/applications?application_id=" + app[7] + "&position_id=" + @position.id.to_s, method: "post", ) do %>
+  <%= radio_button_tag(:status, "Interviewing") %>Interview
+  <%= radio_button_tag(:status, "On-site") %>On-site
+  <%= radio_button_tag(:status, "Accepted") %>Accept
+  <%= radio_button_tag(:status, "Rejected") %>Reject
+  <%= submit_tag("Change") %>
+<% end %>
+
+      </td>
+      <% if app[6] == 1 %>
+      <td><a href="/reimbursements/edit?position_id=<%= @position.id %>&user_id=<%= app[5] %>">Edit</a></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+    <% else %>
+      <h3 style="color:white">No applicants for this position now</h3>
+    <% end %>
+
+</div>
+<hr>
+<%= link_to "Back", users_action_viewJobs_path %>
+<!-- Generate application list for Candidate  -->
+<% else %>
+<div class="span8">
+    <% if @apps.any? %>
+      <h3 align='left' style="color:white">Applied Positions (<%= @apps.count %>)</h3>
+
+<table border="1" style="width:100%">
+  <tr>
+    <th>Job Title</th>
+    <th>Company</th> 
+    <th>Apply Date</th>
+    <th>Status</th>
+    <th>Reimbursement</th>
+  </tr>
+  <% @apps.each do |app| %>
+    <tr>
+      <td><%= app[0] %></td>
+      <td><%= app[1] %></td>
+      <td><%= app[2].strftime("%Y-%m-%d") %></td>
+      <td><%= app[4] %></td>
+      <td>
+      <% if app[5] == 1 %>
+        <a href="/reimbursements/new?position_id=<%=app[6]%>&user_id=<%=@user.id%>">Create</a>/<a href="/reimbursements/show?position_id=<%=app[6]%>&user_id=<%=@user.id%>">View</a>
+      <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+    <% else %>
+      <h3 style="color:white">You do not have applied jobs now</h3>
+    <% end %>
+  
+</div>
+<hr>
+<%= link_to "Back", users_action_path %>
+<% end %>
+
+
+
+  </aside>
+
+</body>

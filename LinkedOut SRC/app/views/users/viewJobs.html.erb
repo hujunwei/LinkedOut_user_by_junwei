@@ -1,0 +1,62 @@
+<% provide(:title, @user.name) %>
+
+<head>
+  <style type="text/css">
+  body {
+    color: white;
+  }
+  span {
+    color: black;
+    font-size: 23px;
+  }
+  </style>
+</head>
+<body style=background-size:cover; background="https://farm6.staticflickr.com/5583/15026716200_7e600049c5_b.jpg">
+<div align='left'class="row">
+  <aside class="span4">
+    <section>
+      <%= gravatar_for @user %>
+      <%= button_to "Sign out", signout_path, method: "delete" %>
+    <h1 style="color:red">How are you today? &nbsp;&nbsp;<%= @user.name %></h1>
+    </section>
+</div>
+<hr>
+
+<!-- Generate position list for Company  -->
+<div class="span8">
+    <% if @positions.any? %>
+      <h3 align='left' style="color:white">Positions (<%= @positions.count %>)</h3>
+
+<table border="1" style="width:100%">
+  <tr>
+    <th>Job Title</th>
+    <th>Post Date</th>
+    <th>Deadline</th>
+    <th>Applicantions</th>
+    <th>Edit</th>
+  </tr>
+  <% @positions.each do |position| %>
+    <tr>
+      <td><a href="/positions/<%= position.id %>"><%= position.name %></a></td>
+      <td><%= position.post_date.strftime("%Y-%m-%d") %></td>
+      <td><%= position.deadline.strftime("%Y-%m-%d") %></td>
+      <td><a href="/users/action/viewApp?position_id=<%= position.id %>">View</a></td>
+      <td><a href="/positions/<%= position.id %>/edit">Edit</a></td>
+      <td>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+    <% else %>
+      <h3 style="color:white">No posted positions now</h3>
+    <% end %>
+
+</div>
+<hr>
+
+<%= link_to "Back", users_action_path %>
+ 
+  </aside>
+
+</body>

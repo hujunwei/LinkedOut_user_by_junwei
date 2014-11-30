@@ -1,0 +1,35 @@
+<h1>Listing Reimbursements</h1>
+
+
+  <table border="1" cellspacing="5" frame="vsides">
+    <tr>
+      <th>Item</th>
+      <th>Money</th>
+      <th>Status</th>
+      <th>Create At</th>
+      <th>Last Update At</th>
+    </tr>
+ 
+    <% @reimbursements.each do |reimbursement| %>
+      <tr>
+        <td><%= reimbursement.item %></td>
+        <td><%= reimbursement.money %></td>
+        <%= form_for :reimbursement, url: reimbursement_path(reimbursement), method: :patch do |f| %>
+        <td>
+          <%= f.radio_button :reimburse_status, "unpaid", :checked => (reimbursement.reimburse_status == "unpaid") %>
+          <%= f.label :reimburse_status, "unpaid" %>
+          <%= f.radio_button :reimburse_status, "paid", :checked => (reimbursement.reimburse_status == "paid") %>
+          <%= f.label :reimburse_status, "paid" %>
+        </td>
+        <td><%= reimbursement.created_at %></td>
+        <td><%= reimbursement.updated_at %></td>
+        <td><%= f.submit "Update" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+
+
+  </table>
+
+    <%= link_to 'Back to applications', '/users/action/viewApp?position_id=' + params[:position_id] %>
+

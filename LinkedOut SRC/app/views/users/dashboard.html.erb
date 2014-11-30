@@ -1,26 +1,29 @@
 
 <% if signed_in? %>
-
+<body style=background-size:cover; background="https://farm2.staticflickr.com/1100/1457116794_7f972df0aa_b.jpg">
 <h1 align="left">Dash Board</h1>
 <%= link_to "Home", users_path %> |
 <%= link_to "Profile", current_user %> |
-<%= link_to "Action", action_path %>
+<%= link_to "Action", users_action_path %>
 <hr />
 <p align="left">Hello, <%= current_user.name %></p>
 <hr />
-<%= button_to "Sign out", signout_path, method: "delete" %>
-<hr />
-<h1>All users</h1>
 
-<ul >
+<h1 align="left">All users</h1>
+
+<%= will_paginate %>
+<ol >
   <% @users.each do |user| %>
     <li>
+      <%= gravatar_for user %>
       <%= link_to user.name, user %>
     </li>
   <% end %>
-</ul>
-
-
+</ol>
+<%= will_paginate %>
+<hr />
+<%= button_to "Sign out", signout_path, method: "delete" %>
+</body>
 
 <% else %>
 <body style=background-size:cover; background="https://farm4.staticflickr.com/3900/15103046802_a9267402ec_k.jpg">

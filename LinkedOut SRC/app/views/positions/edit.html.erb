@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<table width = "500" border = "0">
+<tr>
+<td colspan = "2" style = "background-color:#99bbbb;">
+<h1>Action</h1>
+</td>
+</tr>
+
+<tr valign = "top">
+<td style = "background-color:#ffff99; width:100px;text-align:top;">
+Home<br />
+Profile<br />
+<b>Action</b>
+</td>
+
+<td style = "background-color:#EEEEEE;height:200px;width:400px;text-align:top;">
+<h3>Editing Job</h3>
+<!--Forms to be filled out so as to post a new position -->
+<%= form_for :position, url: position_path(@position), method: :patch do |f| %>
+  <p>
+    <%= f.label :name, "Job Title: " %>
+    <%= f.text_field :name %>
+  </p>
+
+  <div class="row" align='left'>
+    <div class="span 6 offset 3">
+      <p>
+	<%= f.label :post_date, "Post Date: " %>
+	<%= f.text_field :post_date, size: "3*2" %>
+	<%= f.label :deadline, "Deadline: " %>
+	<%= f.text_field :deadline, size: "3*2" %>
+      </p>
+    </div>
+  </div>
+
+
+  <div class="row" align='left'>
+    <div class="span 6 offset 3">
+      <p>
+	<%= f.label :location, "Location: " %>
+	<%= f.text_field :location, size: "4*2" %>
+	<%= f.label :pos_type, "Position Type: " %>
+	<%= f.text_field :pos_type, size: "4*2" %>
+      </p>
+    </div>
+  </div>
+
+
+  <div class="row" align='left'>
+    <div class="span 6 offset 3">
+      <p>
+	<%= f.label :level, "Level: " %>
+	<%= f.text_field :level, size: "5*2" %>
+	<%= f.label :position_status, "Status: " %>
+	<%= f.text_field :position_status, size: "5*2" %>
+      </p>
+    </div>
+  </div>
+
+
+  <p>
+    <%= f.label :description, "Description: " %><br>
+    <%= f.text_area :description, size: "45*40" %>
+  </p>
+
+  <p>
+    <%= f.submit "Post" %> | <%= link_to 'Back', positions_path %>
+  </p>
+<% end %>
+<!--End of form -->
+</td>
+</tr>
+
+<tr>
+<td colspan = "2" style = "background-color:#99bbbb;text-align:center;">
+Copyright LiusuZeng@Duke
+</td>
+</tr>
+
+</table>
+
+</body>
+</html>

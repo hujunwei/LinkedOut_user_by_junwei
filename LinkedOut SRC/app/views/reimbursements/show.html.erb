@@ -1,0 +1,25 @@
+<h1>Listing Reimbursements</h1>
+ 
+<%= link_to 'New Reimbursement', new_reimbursement_path(:user_id => params[:user_id], :position_id => params[:position_id]) %>
+
+<table border="1" cellspacing="5" frame="vsides">
+  <tr>
+    <th>Item</th>
+    <th>Money</th>
+    <th>Status</th>
+    <th>Create At</th>
+    <th>Last Update At</th>
+  </tr>
+ 
+  <% @reimbursements.each do |reimbursement| %>
+    <tr>
+      <td><%= reimbursement.item %></td>
+      <td><%= reimbursement.money %></td>
+      <td><%= reimbursement.reimburse_status %></td>
+      <td><%= reimbursement.created_at %></td>
+      <td><%= reimbursement.updated_at %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'View My Applications', "/users/action/viewApp" %>

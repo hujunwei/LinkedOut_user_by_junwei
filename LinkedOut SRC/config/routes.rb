@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  match '/users/action', to: 'users#action',    via: 'get'
+  match 'reimbursements/edit', to: 'reimbursements#edit', via: 'get'
+  match 'reimbursements/show', to: 'reimbursements#show', via: 'get'
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
   # Liusu
@@ -8,11 +12,15 @@ Rails.application.routes.draw do
   resources :reimbursements
 
   #root to: 'sessions#new'
+  #root to: 'static_pages#home'
+
   root to: 'users#index'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
-  match '/action', to: 'users#action',    via: 'get'
+
+  match '/users/action/viewJobs', to: 'users#viewJobs',     via: 'get'
+  match '/users/action/viewApp', to: 'users#viewApp',     via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,19 @@
+<h1>Reimbursement</h1>
+
+<%= form_for "reimbursement", url: reimbursements_path do |f| %>
+  <%= f.hidden_field :position_id, :value => params[:position_id] %>
+  <%= f.hidden_field :user_id, :value => params[:user_id] %>
+  <p>
+    <%= f.label :item %><br>
+    <%= f.text_field :item %>
+  </p>
+
+  <p>
+    <%= f.label :money %><br>
+    <%= f.text_field :money %>
+  </p>
+ 
+  <p>
+    <%= f.submit "Save" %>
+  </p>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127013419) do
+ActiveRecord::Schema.define(version: 20141130030242) do
 
   create_table "applications", force: true do |t|
     t.string   "application_status"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20141127013419) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "position_id"
+    t.string   "item"
   end
 
   add_index "reimbursements", ["position_id"], name: "index_reimbursements_on_position_id"

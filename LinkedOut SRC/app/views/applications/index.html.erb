@@ -1,0 +1,22 @@
+<h1>Listing Applications</h1>
+
+<table>
+  <tr>
+    <th>Application Status</th>
+    <th>Apply Date</th>
+    <th>Update Date</th>
+    <th>Applicant Num</th>
+    <th>Position Num</th>
+  </tr>
+
+  <% @applications_all.each do |application| %>
+    <tr>
+      <td><%= application.application_status %></td>
+      <td><%= application.created_at %></td>
+      <td><%= application.updated_at %></td>
+      <td><%= application.user_id %></td>
+      <td><%= application.position_id %></td>
+      <td><%= link_to 'Delete', application_path(application), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>

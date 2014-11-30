@@ -7,7 +7,7 @@
 <h1 align="left">Profile</h1>
 <%= link_to "Back to DashBoard", users_path %> |
 <%= link_to "Profile", current_user %> |
-<%= link_to "Action", action_path %>
+<%= link_to "Action", users_action_path %>
 <hr />
 <%= form_for(@user) do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
@@ -82,7 +82,7 @@
   <div align='left'class="row">
     <aside class="span4">
       <section>
-        <p>Hi, <%= current_user.name%>, you are viewing <%= gravatar_for user.name %>'s profile</p>
+        <p>Hi, <%= current_user.name%>, you are viewing <%= gravatar_for @user %>'s profile</p>
       </section>
     </div>
     <hr />

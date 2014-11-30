@@ -1,0 +1,20 @@
+<h1><%= @position.name %></h1>
+
+<p>
+  <strong>Company:</strong>
+  <%= @position.user.name %><br />
+  <strong>Post Date:</strong>
+  <%= @position.post_date %><br/>
+  <strong>Deadline:</strong>
+  <%= @position.deadline %><br/>
+  <strong>Description:</strong>
+  <%= @position.description %><br/>
+  <strong>Location:</strong>
+  <%= @position.location %><br/>
+  <strong>Type:</strong>
+  <%= @position.pos_type %><br/>
+  <strong>Level:</strong>
+  <%= @position.level %><br/>
+</p>
+
+<%= link_to 'Back', :back %>

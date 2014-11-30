@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   #if the user is deleted, then his/her corresponding books are deleted
-  
+
   has_many :applications, dependent: :destroy
   has_many :positions, dependent: :destroy
   has_many :microposts, dependent: :destroy
